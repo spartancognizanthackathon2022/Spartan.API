@@ -10,17 +10,25 @@ namespace spartan_claim_service.Models
     {
         [JsonProperty("beneId")]
         public string BeneId { get; set; }
+        [JsonProperty("attendingPhysician")]
+        public string AttendingPhysician { get; set; }
         [JsonProperty("provider")]
         public string Provider { get; set; }
         [JsonProperty("inscClaimAmtReimbursed")]
 
-        public double InscClaimAmtReimbursed { get; set; }
+        public Int32 InscClaimAmtReimbursed { get; set; }
         [JsonProperty("isInpatient")]
 
         public bool IsInpatient { get; set; }
         [JsonProperty("gender")]
 
         public byte Gender { get; set; }
+        [JsonProperty("state")]
+
+        public byte State { get; set; }
+        [JsonProperty("county")]
+
+        public Int16 County { get; set; }
         [JsonProperty("race")]
 
         public byte Race { get; set; }
@@ -61,7 +69,7 @@ namespace spartan_claim_service.Models
         public bool ChronicCondStroke { get; set; }
         [JsonProperty("ipannualReimbursementAmt")]
 
-        public double IpannualReimbursementAmt { get; set; }
+        public Int32 IpannualReimbursementAmt { get; set; }
         [JsonProperty("ipannualDeductibleAmt")]
 
         public double IpannualDeductibleAmt { get; set; }
@@ -73,13 +81,13 @@ namespace spartan_claim_service.Models
         public double OpannualDeductibleAmt { get; set; }
         [JsonProperty("age")]
 
-        public int Age { get; set; }
+        public double Age { get; set; }
         [JsonProperty("isDead")]
 
-        public double IsDead { get; set; }
+        public bool IsDead { get; set; }
         [JsonProperty("daysAdmitted")]
 
-        public byte DaysAdmitted { get; set; }
+        public Double DaysAdmitted { get; set; }
         [JsonProperty("totalDiagnosis")]
 
         public double TotalDiagnosis { get; set; }
@@ -88,6 +96,6 @@ namespace spartan_claim_service.Models
         public double TotalProcedure { get; set; }
         [JsonProperty("id")]
 
-        public int Id { get; set; }
+        public Int32 Id { get; set; }
     }
 }

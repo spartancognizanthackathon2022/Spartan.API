@@ -22,7 +22,9 @@ namespace spartan_claim_service.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClaimsTest>>> GetClaimsTests()
         {
-            return await _context.ClaimsTests.OrderByDescending(u => u.Id).Take(10).ToListAsync();
+            return await _context.ClaimsTests.OrderByDescending(u => u.Id)
+                           .Where(x => x.State > 0)
+                            .Take(10).ToListAsync();
         }
 
         // GET: api/ClaimsTests/5

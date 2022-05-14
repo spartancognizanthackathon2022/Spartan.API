@@ -38,7 +38,13 @@ namespace spartan_claim_service.Controllers
                                 new Dictionary<string, string>()
                                 {
                                     {
+                                        "Provider", claim.AttendingPhysician.ToString()
+                                    },
+                                                                        {
                                         "InscClaimAmtReimbursed", claim.InscClaimAmtReimbursed.ToString()
+                                    },
+                                    {
+                                        "AttendingPhysician", claim.Provider.ToString()
                                     },
                                     {
                                         "is_inpatient", claim.IsInpatient ? "1" : "0"
@@ -49,8 +55,14 @@ namespace spartan_claim_service.Controllers
                                     {
                                         "Race", claim.Race.ToString()
                                     },
-                                    {
+                                                                        {
                                         "RenalDiseaseIndicator", claim.RenalDiseaseIndicator ? "1" : "0"
+                                    },
+                                    {
+                                        "State", claim.State.ToString()
+                                    },
+                                    {
+                                        "County", claim.County.ToString()
                                     },
                                     {
                                         "ChronicCond_Alzheimer", claim.ChronicCondAlzheimer ? "1" : "0"
@@ -101,7 +113,7 @@ namespace spartan_claim_service.Controllers
                                         "age", claim.Age.ToString()
                                     },
                                     {
-                                        "IsDead", claim.IsDead.ToString()
+                                        "Is_Dead", claim.IsDead ? "1" : "0"
                                     },
                                     {
                                         "DaysAdmitted", claim.DaysAdmitted.ToString()
@@ -124,9 +136,9 @@ namespace spartan_claim_service.Controllers
                     }
                 };
 
-                const string apiKey = "ePOngGFg8fv4ZmnIs3gqe4Af6qgs7o3z"; // Replace this with the API key for the web service
+                const string apiKey = "5Bglxe0ccKKTdEsGDuFKuDQuB2sxLZ5S"; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-                client.BaseAddress = new Uri("http://1b2d133e-b0ab-4c1a-ba69-bea4ab34854e.eastus.azurecontainer.io/score");
+                client.BaseAddress = new Uri("http://1317a3f1-2793-4bb0-83ce-f1dfe9e4056c.eastus.azurecontainer.io/score");
 
                 var requestString = JsonConvert.SerializeObject(scoreRequest);
                 var content = new StringContent(requestString);
