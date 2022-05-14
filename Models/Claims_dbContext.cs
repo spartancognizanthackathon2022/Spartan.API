@@ -31,7 +31,7 @@ namespace spartan_claim_service.Models
 
             modelBuilder.Entity<ClaimsTest>(entity =>
             {
-                entity.ToTable("Claims_test");
+                entity.ToTable("Test_Claims");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -41,7 +41,22 @@ namespace spartan_claim_service.Models
                     .HasMaxLength(50)
                     .HasColumnName("BeneID");
 
+                entity.Property(e => e.AttendingPhysician)
+                    .HasMaxLength(50)
+                    .HasColumnName("AttendingPhysician");
+
+                entity.Property(e => e.Gender)
+                    .HasColumnName("Gender");
+
+                entity.Property(e => e.State)
+                    .HasColumnName("State");
+
+                entity.Property(e => e.County)
+                    .HasColumnName("County");
+
                 entity.Property(e => e.ChronicCondAlzheimer).HasColumnName("ChronicCond_Alzheimer");
+
+                entity.Property(e => e.IsDead).HasColumnName("is_dead");
 
                 entity.Property(e => e.ChronicCondCancer).HasColumnName("ChronicCond_Cancer");
 
