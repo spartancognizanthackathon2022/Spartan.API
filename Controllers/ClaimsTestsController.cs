@@ -23,7 +23,7 @@ namespace spartan_claim_service.Controllers
         public async Task<ActionResult<IEnumerable<ClaimsTest>>> GetClaimsTests()
         {
             return await _context.ClaimsTests.OrderByDescending(u => u.Id)
-                           .Where(x => x.State > 0)
+                           .Where(x => x.State > 0 & x.DaysAdmitted > 0)
                             .Take(10).ToListAsync();
         }
 

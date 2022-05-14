@@ -38,13 +38,13 @@ namespace spartan_claim_service.Controllers
                                 new Dictionary<string, string>()
                                 {
                                     {
-                                        "Provider", claim.AttendingPhysician.ToString()
+                                        "Provider", claim.Provider.ToString()
                                     },
                                                                         {
                                         "InscClaimAmtReimbursed", claim.InscClaimAmtReimbursed.ToString()
                                     },
                                     {
-                                        "AttendingPhysician", claim.Provider.ToString()
+                                        "AttendingPhysician", claim.AttendingPhysician.ToString()
                                     },
                                     {
                                         "is_inpatient", claim.IsInpatient ? "1" : "0"
@@ -158,9 +158,10 @@ namespace spartan_claim_service.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("Result: {0}", result);
+                    Result result_integer = JsonConvert.DeserializeObject<Result>(result);
+                    Console.WriteLine("Result: {0}", result_integer.Results[0]);
 
-                    return Ok(new { result });
+                    return Ok(result_integer.Results[0]);
                 }
                 else
                 {
