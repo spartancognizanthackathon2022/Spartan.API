@@ -23,7 +23,7 @@ namespace SpartanClaims.Functions
         }
 
         [Function("PutClaimsTest")]
-        public async Task<HttpResponseData> PutClaimsTestRun([HttpTrigger(AuthorizationLevel.Function, "put", Route = "PutClaimsTest/{id}")] HttpRequestData req,
+        public async Task<HttpResponseData> PutClaimsTestRun([HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "ClaimsTests/{id}")] HttpRequestData req,
             FunctionContext executionContext,
             int id)
         {

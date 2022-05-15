@@ -19,8 +19,8 @@ namespace SpartanClaims.Functions
             _context = context;
         }
 
-        [Function("GetClaimTests")]
-        public async Task<HttpResponseData> GetClaimsTest([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req,
+        [Function("GetClaimsTests")]
+        public async Task<HttpResponseData> GetClaimsTest([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "ClaimsTests")] HttpRequestData req,
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("GetClaimTests");
