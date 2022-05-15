@@ -25,7 +25,7 @@ namespace SpartanClaims.Functions
         }
 
         [Function("PostMachineLearningScore")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "MachineLearning")] HttpRequestData req,
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("PostMachineLearningScore");
@@ -58,13 +58,13 @@ namespace SpartanClaims.Functions
                                 new Dictionary<string, string>()
                                 {
                                     {
-                                        "Provider", claim.AttendingPhysician.ToString()
+                                        "Provider", claim.Provider.ToString()
                                     },
                                                                         {
                                         "InscClaimAmtReimbursed", claim.InscClaimAmtReimbursed.ToString()
                                     },
                                     {
-                                        "AttendingPhysician", claim.Provider.ToString()
+                                        "AttendingPhysician", claim.AttendingPhysician.ToString()
                                     },
                                     {
                                         "is_inpatient", claim.IsInpatient ? "1" : "0"
@@ -177,11 +177,13 @@ namespace SpartanClaims.Functions
 
                 if (response.IsSuccessStatusCode)
                 {
+
                     string result = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("Result: {0}", result);
+                    Result result_integer = JsonConvert.DeserializeObject<Result>(result);
+                    Console.WriteLine("Result: {0}", result_integer.Results[0]);
 
                     machineLearningResponse = req.CreateResponse(HttpStatusCode.OK);
-                    machineLearningResponse.WriteString(JsonConvert.SerializeObject(new { result }));
+                    machineLearningResponse.WriteString(JsonConvert.SerializeObject(result_integer.Results[0]));
 
                     return machineLearningResponse;
                 }

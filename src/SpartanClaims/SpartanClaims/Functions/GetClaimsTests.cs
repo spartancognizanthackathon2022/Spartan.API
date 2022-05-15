@@ -27,7 +27,7 @@ namespace SpartanClaims.Functions
             logger.LogInformation("C# HTTP trigger function processed a request.");
 
             var result = await _context.ClaimsTests.OrderByDescending(u => u.Id)
-                                 .Where(x => x.State > 0)
+                                 .Where(x => x.State > 0 & x.DaysAdmitted > 0)
                                   .Take(10).ToListAsync();
 
             var response = req.CreateResponse(HttpStatusCode.OK);
