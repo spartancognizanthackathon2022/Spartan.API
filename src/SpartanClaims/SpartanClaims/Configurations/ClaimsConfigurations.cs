@@ -9,5 +9,6 @@ namespace SpartanClaims.Configurations
     public class ClaimsConfigurations
     {
         public string ClaimsDbConnection { get; set; }
+        public string ApiKey { get; set; }
     }
 }
